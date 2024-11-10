@@ -24,7 +24,6 @@ public class ArticleController {
       
     // 스트림 문법
     IntStream.rangeClosed(1, 5)
-        .map(i -> 6 - i) // 5, 4, 3, 2, 1 매핑
         .forEach(i -> articleList.add(new Article(i, "제목" + i, "내용" + i)));
   }
 
