@@ -38,6 +38,14 @@ public class Rq {
     }
   }
 
+  public String getParam(String paramName, String defaultValue) {
+    String value = req.getParameter(paramName);
+
+    if(value == null) return defaultValue;
+
+    return value;
+  }
+
   public void appendBody(String str) {
     try {
       resp.getWriter().append(str);
@@ -62,5 +70,13 @@ public class Rq {
     } catch (ServletException | IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public String getUrlPath() {
+    return req.getRequestURI();
+  }
+
+  public String getMethod() {
+    return req.getMethod();
   }
 }
