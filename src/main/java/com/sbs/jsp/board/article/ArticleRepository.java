@@ -20,7 +20,7 @@ public class ArticleRepository {
         .forEach(i -> datum.add(new Article(i, "제목" + i, "내용" + i)));
   }
 
-  public List<Article> getArticles() {
+  public List<Article> findAll() {
     List<Article> articles = datum;
 
     return articles;
@@ -34,5 +34,15 @@ public class ArticleRepository {
     datum.add(article);
 
     return id;
+  }
+
+  public Article findById(int id) {
+    for(Article article : datum) {
+      if(article.getId() == id) {
+        return article;
+      }
+    }
+
+    return null;
   }
 }
