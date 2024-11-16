@@ -8,8 +8,9 @@
 
 <h1>게시물 상세보기</h1>
 
-<div>
-  <% if(article != null) { %>
+<section class="article-detail-section">
+  <div>
+    <% if(article != null) { %>
     <div>
       ID : <%=article.getId()%>
     </div>
@@ -19,5 +20,9 @@
     <div>
       CONTENT : <%=article.getContent()%>
     </div>
-  <% } %>
-</div>
+    <% } %>
+  </div>
+  <div class="btn-group">
+    <a href="/usr/article/list">리스트로 이동</a>
+  </div>
+</section>
