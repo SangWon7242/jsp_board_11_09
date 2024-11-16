@@ -10,7 +10,6 @@ public class ArticleController {
 
   public ArticleController() {
     articleService = Container.articleService;
-
   }
 
   public void showList(Rq rq) {
