@@ -8,33 +8,53 @@
 List<Article> articles = (List<Article>) request.getAttribute("articles");
 %>
 
-<h1>게시물 리스트</h1>
+<!--  daisy UI -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+<!-- 테일윈드 css 적용 -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  html > body {
+    font-family: 'GmarketSansMedium';
+    text-underline-position: under;
+  }
+</style>
 
 <section class="article-list-section">
-  <table border="1" style="border-collapse: collapse;">
-    <colgroup>
-      <col width="50"/>
-      <col width="300"/>
-    </colgroup>
+  <div class="container mx-auto">
+    <h1 class="text-[1.5rem] font-bold">게시물 리스트</h1>
+    <table class="table text-center">
+      <colgroup>
+        <col width="50"/>
+        <col width="300"/>
+      </colgroup>
 
-    <thead>
-      <tr>
-        <th>번호</th>
-        <th>제목</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    <% for(int i = articles.size() - 1; i >= 0; i--) {
-      Article article = articles.get(i);
-    %>
-      <tr>
-        <td><%=article.getId()%>번</td>
-        <td>
-          <a href="/usr/article/detail/free/<%=article.getId()%>"><%=article.getSubject()%></a>
-        </td>
-      </tr>
-    <% } %>
-    </tbody>
-  </table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(int i = articles.size() - 1; i >= 0; i--) {
+        Article article = articles.get(i);
+        %>
+        <tr>
+          <td><%=article.getId()%>번</td>
+          <td>
+            <a href="/usr/article/detail/free/<%=article.getId()%>" class="hover:underline hover:text-red-300"><%=article.getSubject()%></a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
 </section>
