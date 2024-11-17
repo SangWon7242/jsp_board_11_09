@@ -33,14 +33,15 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
     <h1 class="text-[1.5rem] font-bold">게시물 리스트</h1>
     <table class="table text-center">
       <colgroup>
-        <col width="50"/>
+        <col width="100"/>
         <col width="300"/>
       </colgroup>
 
-      <thead>
+      <thead class="text-[1.2rem]">
         <tr>
           <th>번호</th>
           <th>제목</th>
+          <th>비고</th>
         </tr>
       </thead>
       <tbody>
@@ -51,6 +52,11 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
           <td><%=article.getId()%>번</td>
           <td>
             <a href="/usr/article/detail/free/<%=article.getId()%>" class="hover:underline hover:text-red-300"><%=article.getSubject()%></a>
+          </td>
+          <td>
+            <a href="/usr/article/modify/free/<%=article.getId()%>" class="badge badge-primary badge-outline">수정</a>
+            &nbsp;
+            <a href="/usr/article/delete/free/<%=article.getId()%>" class="badge badge-secondary badge-outline">삭제</a>
           </td>
         </tr>
         <% } %>
