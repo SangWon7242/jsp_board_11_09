@@ -65,6 +65,7 @@ public class ArticleController {
     }
 
     rq.setAttr("article", article);
+
     rq.view("usr/article/detail");
   }
 }
