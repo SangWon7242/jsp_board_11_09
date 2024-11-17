@@ -16,7 +16,11 @@ public class ArticleController {
     List<Article> articles = articleService.findAll();
 
     if(articles.isEmpty()) {
-      rq.appendBody("게시물이 존재하지 않습니다.");
+      rq.appendBody("""
+                    <script>
+                      alert('게시물이 존재하지 않습니다.');
+                    </script>
+                    """);
       return;
     }
 
@@ -33,34 +37,54 @@ public class ArticleController {
     String subject = rq.getParam("subject", "");
 
     if(subject.trim().isEmpty()) {
-      rq.appendBody("제목을 입력해주세요.");
+      rq.appendBody("""
+                    <script>
+                      alert('제목을 입력해주세요.');
+                    </script>
+                    """);
       return;
     }
 
     String content = rq.getParam("content", "");
 
     if(content.trim().isEmpty()) {
-      rq.appendBody("내용을 입력해주세요.");
+      rq.appendBody("""
+                    <script>
+                      alert('내용을 입력해주세요.');
+                    </script>
+                    """);
       return;
     }
 
     long id = articleService.write(subject, content);
 
-    rq.appendBody("<div>%d번 게시물이 생성되었습니다.</div>".formatted(id));
+    rq.appendBody("""
+                    <script>
+                      alert('%d번 게시물이 생성되었습니다.');
+                    </script>
+                    """.formatted(id));
   }
 
   public void showDetail(Rq rq) {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.appendBody("올바른 요청이 아닙니다.");
+      rq.appendBody("""
+                    <script>
+                      alert('올바른 요청이 아닙니다.');
+                    </script>
+                    """);
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.appendBody("%d번 게시물은 존재하지 않습니다.".formatted(id));
+      rq.appendBody("""
+                    <script>
+                      alert('%d번 게시물은 존재하지 않습니다.');
+                    </script>
+                    """.formatted(id));
       return;
     }
 
@@ -73,39 +97,93 @@ public class ArticleController {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.appendBody("올바른 요청이 아닙니다.");
+      rq.appendBody("""
+                    <script>
+                      alert('올바른 요청이 아닙니다.');
+                    </script>
+                    """);
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.appendBody("%d번 게시물은 존재하지 않습니다.".formatted(id));
+      rq.appendBody("""
+                    <script>
+                      alert('%d번 게시물은 존재하지 않습니다.');
+                    </script>
+                    """.formatted(id));
       return;
     }
 
     articleService.delete(id);
 
-    rq.appendBody("%d번 게시물이 삭제되었습니다.\n".formatted(id));
+    rq.appendBody("""
+                    <script>
+                      alert('%d번 게시물이 삭제되었습니다.');
+                    </script>
+                    """.formatted(id));
   }
 
   public void showModify(Rq rq) {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.appendBody("올바른 요청이 아닙니다.");
+      rq.appendBody("""
+                    <script>
+                      alert('올바른 요청이 아닙니다.');
+                    </script>
+                    """);
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.appendBody("%d번 게시물은 존재하지 않습니다.".formatted(id));
+      rq.appendBody("""
+                    <script>
+                      alert('%d번 게시물은 존재하지 않습니다.');
+                    </script>
+                    """.formatted(id));
       return;
     }
 
     rq.setAttr("article", article);
 
     rq.view("usr/article/modify");
+  }
+
+  public void doModify(Rq rq) {
+    long id = rq.getLongPathValueByIndex(1, 0);
+
+    String subject = rq.getParam("subject", "");
+
+    if(subject.trim().isEmpty()) {
+      rq.appendBody("""
+                    <script>
+                      alert('제목을 입력해주세요.');
+                    </script>
+                    """);
+      return;
+    }
+
+    String content = rq.getParam("content", "");
+
+    if(content.trim().isEmpty()) {
+      rq.appendBody("""
+                    <script>
+                      alert('내용을 입력해주세요.');
+                    </script>
+                    """);
+      return;
+    }
+
+    articleService.modify(id, subject, content);
+
+    rq.appendBody("""
+                    <script>
+                      alert('%d번 게시물이 수정되었습니다.');
+                    </script>
+                    """.formatted(id));
   }
 }
