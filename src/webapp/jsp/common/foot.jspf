@@ -1,0 +1,9 @@
+  </div>
+
+  <footer class="bottom-bar bg-black text-white h-[100px]">
+    <div class="flex h-full items-center justify-center">
+      <span class="text-[1.3rem]">copyright(c) 2024 All rights reserved</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JSP 게시판</title>
+
+  <!--  daisy UI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+  <!-- 테일윈드 css 적용 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="flex flex-col">
+
+<style>
+  @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  html > body {
+    font-family: 'GmarketSansMedium';
+    text-underline-position: under;
+  }
+</style>
+
+<header class="top-bar h-[60px] bg-[#efefef]">
+  <div class="container mx-auto flex h-full">
+    <nav class="menu-1">
+      <ul class="flex h-full">
+        <li><a href="/usr/article/write" class="flex h-full items-center px-3">게시물 작성</a></li>
+        <li><a href="/usr/article/list" class="flex h-full items-center px-3">게시물 리스트</a></li>
+        <li><a href="#" class="flex h-full items-center px-3">로그인</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="content-wrap h-screen mt-[20px]">
