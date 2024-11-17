@@ -88,4 +88,24 @@ public class ArticleController {
 
     rq.appendBody("%d번 게시물이 삭제되었습니다.\n".formatted(id));
   }
+
+  public void showModify(Rq rq) {
+    long id = rq.getLongPathValueByIndex(1, 0);
+
+    if(id == 0) {
+      rq.appendBody("올바른 요청이 아닙니다.");
+      return;
+    }
+
+    Article article = articleService.findById(id);
+
+    if(article == null) {
+      rq.appendBody("%d번 게시물은 존재하지 않습니다.".formatted(id));
+      return;
+    }
+
+    rq.setAttr("article", article);
+
+    rq.view("usr/article/modify");
+  }
 }

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<h1>게시물 작성</h1>
+<%@ page import="com.sbs.jsp.board.article.Article" %>
+
+<%
+  Article article = (Article) request.getAttribute("article");
+%>
+
+<h1>게시물 수정</h1>
 
 <script>
   function ArticleSave__submitForm(form) {
@@ -27,15 +33,18 @@
 <section class="article-write-section">
   <form method="POST" onsubmit="ArticleSave__submitForm(this); return false;">
     <div>
+      <span>번호 : <%=article.getId()%></span>
+    </div>
+    <div>
       <span>제목</span>
       <div>
-        <input name="subject" type="text" placeholder="제목을 입력해주세요." maxlength="50">
+        <input name="subject" type="text" placeholder="제목을 입력해주세요." maxlength="50" value="<%=article.getSubject()%>">
       </div>
     </div>
     <div>
       <span>내용</span>
       <div>
-        <textarea name="content" placeholder="내용을 입력해주세요." cols="30" rows="10"></textarea>
+        <textarea name="content" placeholder="내용을 입력해주세요." cols="30" rows="10"><%=article.getContent()%></textarea>
       </div>
     </div>
 
