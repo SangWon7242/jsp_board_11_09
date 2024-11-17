@@ -50,4 +50,12 @@ public class ArticleRepository {
 
     return null;
   }
+
+  public void delete(long id) {
+    Article article = findById(id);
+
+    if (article == null) return;
+
+    datum.remove(article);
+  }
 }
