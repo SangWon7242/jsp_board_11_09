@@ -42,7 +42,7 @@ public class Rq {
   public String getParam(String paramName, String defaultValue) {
     String value = req.getParameter(paramName);
 
-    if(value == null) return defaultValue;
+    if (value == null) return defaultValue;
 
     return value;
   }
@@ -85,5 +85,30 @@ public class Rq {
 
   public String getMethod() {
     return req.getMethod();
+  }
+
+  public long getLongPathValueByIndex(int index, int defaultValue) {
+    String value = getPathValueByIndex(index, null);
+
+    if (value == null) {
+      return defaultValue;
+    }
+
+    try {
+      return Long.parseLong(value);
+    } catch (NumberFormatException e) {
+      return defaultValue;
+    }
+  }
+
+  private String getPathValueByIndex(int index, String defaultValue) {
+    String[] bits = req.getRequestURI().split("/");
+    System.out.println(Arrays.toString(bits));
+
+    try {
+      return bits[4 + index];
+    } catch (ArrayIndexOutOfBoundsException e) {
+      return defaultValue;
+    }
   }
 }

@@ -31,7 +31,7 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
       <tr>
         <td><%=article.getId()%>번</td>
         <td>
-          <a href="/usr/article/detail?id=<%=article.getId()%>"><%=article.getSubject()%></a>
+          <a href="/usr/article/detail/free/<%=article.getId()%>"><%=article.getSubject()%></a>
         </td>
       </tr>
     <% } %>
