@@ -16,22 +16,11 @@
   <!-- 테일윈드 css 적용 -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- 공통 css 불러오기 -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+
 </head>
 <body class="flex flex-col">
-
-<style>
-  @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  html > body {
-    font-family: 'GmarketSansMedium';
-    text-underline-position: under;
-  }
-</style>
 
 <header class="top-bar h-[60px] bg-[#efefef]">
   <div class="container mx-auto flex h-full">
