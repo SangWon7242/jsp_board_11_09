@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.sbs.jsp.board.article.Article" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
 String pageTitle = "게시물 리스트";
 request.setAttribute("pageTitle", pageTitle);
-
-List<Article> articles = (List<Article>) request.getAttribute("articles");
 %>
 
 <%@ include file="../../common/head.jspf" %>
@@ -29,24 +24,22 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
         </tr>
       </thead>
       <tbody>
-        <% for(int i = articles.size() - 1; i >= 0; i--) {
-        Article article = articles.get(i);
-        %>
-        <tr>
-          <td><%=article.getId()%>번</td>
-          <td>
-            <a href="/usr/article/detail/free/<%=article.getId()%>" class="hover:underline hover:text-red-300"><%=article.getSubject()%></a>
-          </td>
-          <td>
-            <a href="/usr/article/modify/free/<%=article.getId()%>" class="badge badge-primary badge-outline">수정</a>
-            &nbsp;
-            <a onclick="if(!confirm('정말 삭제하시겠습니까?')) return false;" href="/usr/article/delete/free/<%=article.getId()%>" class="badge badge-secondary badge-outline">삭제</a>
-          </td>
-        </tr>
-        <% } %>
+        <c:forEach var="article" items="${articles}">
+          <tr>
+            <td>${article.id}번</td>
+            <td>
+              <a href="/usr/article/detail/free/${article.id}" class="hover:underline hover:text-red-300">${article.subject}</a>
+            </td>
+            <td>
+              <a href="/usr/article/modify/free/${article.id}" class="badge badge-primary badge-outline">수정</a>
+              &nbsp;
+              <a onclick="if(!confirm('정말 삭제하시겠습니까?')) return false;" href="/usr/article/delete/free/${article.id}" class="badge badge-secondary badge-outline">삭제</a>
+            </td>
+          </tr>
+        </c:forEach>
       </tbody>
     </table>
   </div>
 </section>
 
-  <%@ include file="../../common/foot.jspf" %>
+<%@ include file="../../common/foot.jspf" %>
