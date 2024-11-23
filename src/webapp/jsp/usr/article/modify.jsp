@@ -3,12 +3,13 @@
 <%@ page import="com.sbs.jsp.board.article.Article" %>
 
 <%
+  String pageTitle = "게시물 수정";
+  request.setAttribute("pageTitle", pageTitle);
+
   Article article = (Article) request.getAttribute("article");
 %>
 
 <%@ include file="../../common/head.jspf" %>
-
-<h1>게시물 수정</h1>
 
 <script>
   function ArticleSave__submitForm(form) {

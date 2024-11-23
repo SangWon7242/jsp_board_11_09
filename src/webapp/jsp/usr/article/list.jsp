@@ -5,6 +5,9 @@
 <%@ page import="com.sbs.jsp.board.article.Article" %>
 
 <%
+String pageTitle = "게시물 리스트";
+request.setAttribute("pageTitle", pageTitle);
+
 List<Article> articles = (List<Article>) request.getAttribute("articles");
 %>
 
@@ -12,7 +15,6 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
 
 <section class="article-list-section">
   <div class="container mx-auto">
-    <h1 class="text-[1.5rem] font-bold">게시물 리스트</h1>
     <table class="table text-center">
       <colgroup>
         <col width="100"/>

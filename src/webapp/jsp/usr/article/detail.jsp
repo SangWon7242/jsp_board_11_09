@@ -3,12 +3,13 @@
 <%@ page import="com.sbs.jsp.board.article.Article" %>
 
 <%
-  Article article = (Article) request.getAttribute("article");
+String pageTitle = "게시물 상세보기";
+request.setAttribute("pageTitle", pageTitle);
+
+Article article = (Article) request.getAttribute("article");
 %>
 
 <%@ include file="../../common/head.jspf" %>
-
-<h1>게시물 상세보기</h1>
 
 <section class="article-detail-section">
   <div>
