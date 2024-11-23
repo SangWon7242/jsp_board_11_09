@@ -4,6 +4,6 @@ import com.sbs.jsp.board.Rq;
 
 public class MemberController {
   public void showJoin(Rq rq) {
-    rq.appendBody("회원가입");
+    rq.println("회원가입");
   }
 }

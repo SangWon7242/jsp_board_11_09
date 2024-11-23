@@ -16,11 +16,7 @@ public class ArticleController {
     List<Article> articles = articleService.findAll();
 
     if(articles.isEmpty()) {
-      rq.print("""
-                    <script>
-                      alert('게시물이 존재하지 않습니다.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/list/free", "게시물이 존재하지 않습니다.");
       return;
     }
 
@@ -37,54 +33,35 @@ public class ArticleController {
     String subject = rq.getParam("subject", "");
 
     if(subject.trim().isEmpty()) {
-      rq.print("""
-                    <script>
-                      alert('제목을 입력해주세요.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/write", "제목을 입력해주세요.");
       return;
     }
 
     String content = rq.getParam("content", "");
 
     if(content.trim().isEmpty()) {
-      rq.print("""
-                    <script>
-                      alert('내용을 입력해주세요.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/write", "내용을 입력해주세요.");
       return;
     }
 
     long id = articleService.write(subject, content);
 
-    rq.print("""
-                    <script>
-                      alert('%d번 게시물이 생성되었습니다.');
-                    </script>
-                    """.formatted(id));
+
+    rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 생성되었습니다.".formatted(id));
   }
 
   public void showDetail(Rq rq) {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.print("""
-                    <script>
-                      alert('올바른 요청이 아닙니다.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/list", "올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.print("""
-                    <script>
-                      alert('%d번 게시물은 존재하지 않습니다.');
-                    </script>
-                    """.formatted(id));
+      rq.replace("/usr/article/list/free", "%d번 게시물은 존재하지 않습니다.".formatted(id));
       return;
     }
 
@@ -97,54 +74,34 @@ public class ArticleController {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.print("""
-                    <script>
-                      alert('올바른 요청이 아닙니다.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/list/free", "올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.print("""
-                    <script>
-                      alert('%d번 게시물은 존재하지 않습니다.');
-                    </script>
-                    """.formatted(id));
+      rq.replace("/usr/article/list/free", "%d번 게시물은 존재하지 않습니다.".formatted(id));
       return;
     }
 
     articleService.delete(id);
 
-    rq.print("""
-                    <script>
-                      alert('%d번 게시물이 삭제되었습니다.');
-                    </script>
-                    """.formatted(id));
+    rq.replace("/usr/article/list/free", "%d번 게시물이 삭제되었습니다.".formatted(id));
   }
 
   public void showModify(Rq rq) {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.print("""
-                    <script>
-                      alert('올바른 요청이 아닙니다.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/list/free", "올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.print("""
-                    <script>
-                      alert('%d번 게시물은 존재하지 않습니다.');
-                    </script>
-                    """.formatted(id));
+      rq.replace("/usr/article/list/free", "%d번 게시물은 존재하지 않습니다.".formatted(id));
       return;
     }
 
@@ -159,31 +116,19 @@ public class ArticleController {
     String subject = rq.getParam("subject", "");
 
     if(subject.trim().isEmpty()) {
-      rq.print("""
-                    <script>
-                      alert('제목을 입력해주세요.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/write", "제목을 입력해주세요.");
       return;
     }
 
     String content = rq.getParam("content", "");
 
     if(content.trim().isEmpty()) {
-      rq.print("""
-                    <script>
-                      alert('내용을 입력해주세요.');
-                    </script>
-                    """);
+      rq.replace("/usr/article/write", "내용을 입력해주세요.");
       return;
     }
 
     articleService.modify(id, subject, content);
 
-    rq.print("""
-                    <script>
-                      alert('%d번 게시물이 수정되었습니다.');
-                    </script>
-                    """.formatted(id));
+    rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
   }
 }
