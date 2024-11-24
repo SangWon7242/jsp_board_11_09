@@ -33,8 +33,7 @@ request.setAttribute("pageTitle", pageTitle);
             <td>
               <a href="/usr/article/modify/free/${article.id}" class="badge badge-primary badge-outline">수정</a>
               &nbsp;
-              <a onclick="if(confirm('정말 삭제하시겠습니까?')) $(this).next().submit();" class="badge badge-secondary badge-outline cursor-pointer">삭제</a>
-              <form hidden method="POST" action="/usr/article/delete/free/${article.id}"></form>
+              <a onclick="if(!confirm('정말 삭제하시겠습니까?')) return false;" href="/usr/article/delete/free/${article.id}?_method=DELETE" class="badge badge-secondary badge-outline">삭제</a>
             </td>
           </tr>
         </c:forEach>
