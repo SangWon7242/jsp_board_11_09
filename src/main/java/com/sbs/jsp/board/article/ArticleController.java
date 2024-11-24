@@ -16,7 +16,7 @@ public class ArticleController {
     List<Article> articles = articleService.findAll();
 
     if(articles.isEmpty()) {
-      rq.replace("/usr/article/list/free", "게시물이 존재하지 않습니다.");
+      rq.historyBack("게시물이 존재하지 않습니다.");
       return;
     }
 
@@ -33,14 +33,14 @@ public class ArticleController {
     String subject = rq.getParam("subject", "");
 
     if(subject.trim().isEmpty()) {
-      rq.replace("/usr/article/write", "제목을 입력해주세요.");
+      rq.historyBack("제목을 입력해주세요.");
       return;
     }
 
     String content = rq.getParam("content", "");
 
     if(content.trim().isEmpty()) {
-      rq.replace("/usr/article/write", "내용을 입력해주세요.");
+      rq.historyBack("내용을 입력해주세요.");
       return;
     }
 
@@ -54,14 +54,14 @@ public class ArticleController {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.replace("/usr/article/list", "올바른 요청이 아닙니다.");
+      rq.historyBack("올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.replace("/usr/article/list/free", "%d번 게시물은 존재하지 않습니다.".formatted(id));
+      rq.historyBack("%d번 게시물은 존재하지 않습니다.".formatted(id));
       return;
     }
 
@@ -74,14 +74,14 @@ public class ArticleController {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.replace("/usr/article/list/free", "올바른 요청이 아닙니다.");
+      rq.historyBack("올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.replace("/usr/article/list/free", "%d번 게시물은 존재하지 않습니다.".formatted(id));
+      rq.historyBack("%d번 게시물은 존재하지 않습니다.".formatted(id));
       return;
     }
 
@@ -94,14 +94,14 @@ public class ArticleController {
     long id = rq.getLongPathValueByIndex(1, 0);
 
     if(id == 0) {
-      rq.replace("/usr/article/list/free", "올바른 요청이 아닙니다.");
+      rq.historyBack("올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
     if(article == null) {
-      rq.replace("/usr/article/list/free", "%d번 게시물은 존재하지 않습니다.".formatted(id));
+      rq.historyBack("%d번 게시물은 존재하지 않습니다.".formatted(id));
       return;
     }
 
@@ -116,14 +116,14 @@ public class ArticleController {
     String subject = rq.getParam("subject", "");
 
     if(subject.trim().isEmpty()) {
-      rq.replace("/usr/article/write", "제목을 입력해주세요.");
+      rq.historyBack("제목을 입력해주세요.");
       return;
     }
 
     String content = rq.getParam("content", "");
 
     if(content.trim().isEmpty()) {
-      rq.replace("/usr/article/write", "내용을 입력해주세요.");
+      rq.historyBack("내용을 입력해주세요.");
       return;
     }
 

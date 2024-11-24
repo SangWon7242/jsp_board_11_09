@@ -75,6 +75,22 @@ public class Rq {
     }
   }
 
+  public void historyBack(String msg) {
+    if(msg != null && !msg.trim().isEmpty()) {
+      println("""
+              <script>
+                alert("%s")
+              </script>
+              """.formatted(msg));
+
+      println("""
+              <script>
+                history.back();
+              </script>
+              """);
+    }
+  }
+
 
   public Object getAttr(String name) {
     return req.getAttribute(name);
